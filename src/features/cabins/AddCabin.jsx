@@ -6,7 +6,7 @@ import CabinTable from "./CabinTable";
 
 function AddCabin() {
   return (
-    <di>
+    <div>
       <Modal>
         <Modal.Open opens="cabin-form">
           <Button>Add new cabin</Button>
@@ -22,7 +22,7 @@ function AddCabin() {
         <CabinTable />
       </Modal.Window> */}
       </Modal>
-    </di>
+    </div>
   );
 }
 
