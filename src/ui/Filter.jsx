@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 const StyledFilter = styled.div`
@@ -33,3 +34,76 @@ const FilterButton = styled.button`
     color: var(--color-brand-50);
   }
 `;
+
+//v3 is working
+function Filter({ filterField, options }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const btnActive = searchParams.get(filterField) || options.at(0).value;
+
+  function handleClick(value) {
+    searchParams.set(filterField, value);
+    setSearchParams(searchParams);
+  }
+  return (
+    <StyledFilter>
+      {options.map((option) => (
+        <FilterButton
+          key={option.value}
+          onClick={() => handleClick(option.value)}
+          active={option.value === btnActive ? "true" : ""}
+        >
+          {option.lable}
+        </FilterButton>
+      ))}
+    </StyledFilter>
+  );
+}
+
+export default Filter;
+
+// v2
+// function Filter({ filterField, options }) {
+//   const [searchParams, setSearchParams] = useSearchParams();
+
+//   function handleClick(value) {
+//     searchParams.set(filterField, value);
+//     setSearchParams(searchParams);
+//   }
+//   return (
+//     <StyledFilter>
+//       {options.map((option) => {
+//         <FilterButton
+//           key={option.value}
+//           onClick={() => handleClick(option.value)}
+//         >
+//           {option.lable}
+//         </FilterButton>;
+//       })}
+//     </StyledFilter>
+//   );
+// }
+
+// export default Filter;
+
+// v1
+// function Filter() {
+//   const [searchParams, setSearchParams] = useSearchParams();
+
+//   function handleClick(value) {
+//     searchParams.set("discount", value);
+//     setSearchParams(searchParams);
+//   }
+//   return (
+//     <StyledFilter>
+//       <FilterButton onClick={() => handleClick("all")}>All</FilterButton>
+//       <FilterButton onClick={() => handleClick("no-discount")}>
+//         No discount
+//       </FilterButton>
+//       <FilterButton onClick={() => handleClick("with-discount")}>
+//         With discount
+//       </FilterButton>
+//     </StyledFilter>
+//   );
+// }
+
+// export default Filter;
