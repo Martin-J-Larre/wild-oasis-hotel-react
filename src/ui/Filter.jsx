@@ -49,11 +49,13 @@ function Filter({ filterField, options }) {
       {options.map((option) => (
         <FilterButton
           key={option.value}
-          onClick={() => handleClick(option.value)}
+          onClick={() => {
+            handleClick(option.value);
+          }}
           active={option.value === btnActive ? "true" : ""}
           disabled={option.value === btnActive}
         >
-          {option.lable}
+          {option.label}
         </FilterButton>
       ))}
     </StyledFilter>
@@ -61,50 +63,3 @@ function Filter({ filterField, options }) {
 }
 
 export default Filter;
-
-// v2
-// function Filter({ filterField, options }) {
-//   const [searchParams, setSearchParams] = useSearchParams();
-
-//   function handleClick(value) {
-//     searchParams.set(filterField, value);
-//     setSearchParams(searchParams);
-//   }
-//   return (
-//     <StyledFilter>
-//       {options.map((option) => {
-//         <FilterButton
-//           key={option.value}
-//           onClick={() => handleClick(option.value)}
-//         >
-//           {option.lable}
-//         </FilterButton>;
-//       })}
-//     </StyledFilter>
-//   );
-// }
-
-// export default Filter;
-
-// v1
-// function Filter() {
-//   const [searchParams, setSearchParams] = useSearchParams();
-
-//   function handleClick(value) {
-//     searchParams.set("discount", value);
-//     setSearchParams(searchParams);
-//   }
-//   return (
-//     <StyledFilter>
-//       <FilterButton onClick={() => handleClick("all")}>All</FilterButton>
-//       <FilterButton onClick={() => handleClick("no-discount")}>
-//         No discount
-//       </FilterButton>
-//       <FilterButton onClick={() => handleClick("with-discount")}>
-//         With discount
-//       </FilterButton>
-//     </StyledFilter>
-//   );
-// }
-
-// export default Filter;
