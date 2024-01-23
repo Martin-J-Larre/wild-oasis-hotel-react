@@ -26,8 +26,6 @@ export async function getBookings({ filter, sortBy, page }) {
   }
 
   const { data, error, count } = await query;
-  // Bug
-  console.log(data);
 
   if (error) {
     console.error(error);
